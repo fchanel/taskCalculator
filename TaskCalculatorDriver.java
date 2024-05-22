@@ -103,7 +103,7 @@ public class TaskCalculatorDriver {
 				break;
 			} catch (InputMismatchException excpt) {
 				System.out.println("Invalid input. Please enter a valid number.");
-				scanner.next(); // clear the invalid input
+				scanner.next(); 
 			} catch (IllegalArgumentException excpt) {
 				System.out.println(excpt.getMessage());
 			}

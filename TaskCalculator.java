@@ -70,7 +70,8 @@ public abstract class TaskCalculator implements Comparable<TaskCalculator> {
 
 	@Override
 	public String toString() {
-		return "Welcome to The Task Calculator!";
+		return "Task calculator\n"
+				+ "Start age: " + startAge + "n/End age: " + endAge;
 	}
 
 	public static int getTotalMinutesOfAllTasks(List<TaskCalculator> tasks) {
