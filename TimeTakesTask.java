@@ -1,6 +1,5 @@
 package finalProject;
 
-
 public class TimeTakesTask extends TaskCalculator {
 	private String taskName;
 	private int ageStartedTask;
@@ -11,20 +10,38 @@ public class TimeTakesTask extends TaskCalculator {
 	private double totalDaysOfTaskLifetime;
 	private double totalSecondsOfTaskLifetime;
 	private String grandTotalOfTaskLifetime;
+	public enum TimeUnit {
+		SECONDS, MINUTES, HOURS, DAYS;
+
+		public static double convert(int totalMinutes, TimeUnit unit) {
+			switch (unit) {
+			case SECONDS:
+				return totalMinutes * 60.0;
+			case MINUTES:
+				return totalMinutes;
+			case HOURS:
+				return totalMinutes / 60.0;
+			case DAYS:
+				return totalMinutes / (60.0 * 24);
+			default:
+				throw new IllegalArgumentException("Unknown time unit: " + unit);
+			}
+		}
+	}
 
 	public TimeTakesTask(String taskName, int ageStartedTask, int finalAgeOfTask, double minutesPerTask) {
 		super(ageStartedTask, finalAgeOfTask);
 		this.taskName = taskName;
-	//	this.ageStartedTask = ageStartedTask;
-//		this.finalAgeOfTask = finalAgeOfTask;
+		this.ageStartedTask = ageStartedTask;
+		this.finalAgeOfTask = finalAgeOfTask;
 		this.minutesPerTask = minutesPerTask;
 	}
 
 	public TimeTakesTask(int finalAgeOfTask, double minutesPerTask) {
 		super(finalAgeOfTask);
 		this.taskName = "Custom Task";
-	//	this.ageStartedTask = 0;
-	//	this.finalAgeOfTask = finalAgeOfTask;
+		this.ageStartedTask = 0;
+		this.finalAgeOfTask = finalAgeOfTask;
 		this.minutesPerTask = minutesPerTask;
 	}
 
@@ -108,8 +125,8 @@ public class TimeTakesTask extends TaskCalculator {
 		int remainingMinutes = totalMinutes % 60;
 		int remainingHours = totalHours % 24;
 
-		System.out.println("Total Time: " + totalDays + " days, " + remainingHours + " hours, " + remainingMinutes
-				+ " minutes, " + totalSeconds + " seconds.");
+		System.out.println("Which comes to roughly: " + totalDays + " days, " + remainingHours + " hours, " + "and " + remainingMinutes
+				+ " minutes of your life you will spend preforming these task/s\n\n");
 		return totalMinutes;
 	}
 
@@ -120,18 +137,19 @@ public class TimeTakesTask extends TaskCalculator {
 		totalHoursOfTaskLifetime = TimeUnit.convert(totalMinutes, TimeUnit.HOURS);
 		totalDaysOfTaskLifetime = TimeUnit.convert(totalMinutes, TimeUnit.DAYS);
 		totalSecondsOfTaskLifetime = TimeUnit.convert(totalMinutes, TimeUnit.SECONDS);
-		grandTotalOfTaskLifetime = totalSecondsOfTaskLifetime + " seconds, " + totalMinsOfTaskLifetime + " minutes, "
-				+ totalHoursOfTaskLifetime + " hours, " + totalDaysOfTaskLifetime + " days";
+		grandTotalOfTaskLifetime = totalSecondsOfTaskLifetime + " seconds\n " + totalMinsOfTaskLifetime + " minutes\n "
+				+ totalHoursOfTaskLifetime + " hour\n " + totalDaysOfTaskLifetime + " days\n";
 	}
 
 	@Override
 	public String toString() {
-		return taskName + "\n Age you started preforming this task: " + ageStartedTask + " years old"
-				+ "\n You will spend " + totalMinsOfTaskLifetime + " minutes of your life preforming this task. \n Or "
-				+ "\n You will spend " + totalHoursOfTaskLifetime + "hours of your life preforming this task. \n Or"
-				+"\n You will spend " + totalDaysOfTaskLifetime
-				+ " days of your life preforming this task. \n And!" + "\n You will spend " + totalSecondsOfTaskLifetime
-				+ " seconds preforming this task." + " \n Which comes to: " + grandTotalOfTaskLifetime + "\n";
+		return taskName + "\nAge you started preforming this task: " + ageStartedTask + " years old"
+				+ "\n\n\tYou will spend " + totalMinsOfTaskLifetime + " minutes of your life preforming this task."
+				+ "\n\tOr in hours that is: " + totalHoursOfTaskLifetime + " hours of your life preforming this task."
+				+"\n\tOr you will spend " + totalDaysOfTaskLifetime
+				+ " days of your life preforming this task."
+				+"\n\tWhich comes to a grand total of  " + totalSecondsOfTaskLifetime
+				+ " seconds preforming this task.\n\n";
 	}
 
 	@Override

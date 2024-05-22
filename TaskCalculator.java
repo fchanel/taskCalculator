@@ -9,24 +9,7 @@ public abstract class TaskCalculator implements Comparable<TaskCalculator> {
 
 	private static int taskCounter = 0;
 
-	public enum TimeUnit {
-		SECONDS, MINUTES, HOURS, DAYS;
-
-		public static double convert(int totalMinutes, TimeUnit unit) {
-			switch (unit) {
-			case SECONDS:
-				return totalMinutes * 60.0;
-			case MINUTES:
-				return totalMinutes;
-			case HOURS:
-				return totalMinutes / 60.0;
-			case DAYS:
-				return totalMinutes / (60.0 * 24);
-			default:
-				throw new IllegalArgumentException("Unknown time unit: " + unit);
-			}
-		}
-	}
+	
 
 	public TaskCalculator(int startAge, int endAge) {
 		this.startAge = startAge;
@@ -70,15 +53,15 @@ public abstract class TaskCalculator implements Comparable<TaskCalculator> {
 
 	public abstract void calculateTaskTime();
 
-	//@Override
-	//public boolean equals(Object obj) {
-	//	if (this == obj)
-	//		return true;
-	//	if (obj == null || getClass() != obj.getClass())
-	//		return false;
-	//	TaskCalculator that = (TaskCalculator) obj;
-	//	return startAge == that.startAge && endAge == that.endAge;
-	//}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+		TaskCalculator that = (TaskCalculator) obj;
+		return startAge == that.startAge && endAge == that.endAge;
+	}
 
 	@Override
 	public int compareTo(TaskCalculator other) {
@@ -87,10 +70,7 @@ public abstract class TaskCalculator implements Comparable<TaskCalculator> {
 
 	@Override
 	public String toString() {
-		return "Welcome to the task calculator!"
-				+ "\n In this program we will explore based on selected tasks from the menu "
-				+ "\n or custom tasks from input"
-				+"\n how much of your life you spend on tasks you might preform daily!";
+		return "Welcome to The Task Calculator!";
 	}
 
 	public static int getTotalMinutesOfAllTasks(List<TaskCalculator> tasks) {
