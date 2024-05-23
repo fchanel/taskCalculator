@@ -8,11 +8,11 @@ public abstract class LifetimeTasks implements Comparable<LifetimeTasks> {
 	protected int ageStartedTask;
 	protected int endAge;
 	protected double minutesPerTask;
-	protected int totalMinsOfTaskLifetime;
+	protected static int totalMinsOfTaskLifetime;
 	protected double totalHoursOfTaskLifetime;
 	protected double totalDaysOfTaskLifetime;
 	protected double totalSecondsOfTaskLifetime;
-	protected String grandTotalOfTaskLifetime;
+	protected static String grandTotalOfTaskLifetime;
 
 	public enum TimeUnit {
 		SECONDS, MINUTES, HOURS, DAYS;
@@ -59,10 +59,8 @@ public abstract class LifetimeTasks implements Comparable<LifetimeTasks> {
 
 	@Override
 	public String toString() {
-		return taskName + "\nAge you started performing this task: " + ageStartedTask + " years old"
-				+ "\n\n\tYou will spend " + totalMinsOfTaskLifetime + " minutes of your life " +taskName
-				+ "\n\tOr in hours that is: " + totalHoursOfTaskLifetime + " hours of your life "+taskName
-				+ "\n\tOr you will spend " + totalDaysOfTaskLifetime + " days of your life " +taskName;
+		return "Task calculator\n"
+				+ "Start age: " + ageStartedTask + "n/End age: " + endAge;
 	}
 
 	@Override
@@ -101,12 +99,12 @@ public abstract class LifetimeTasks implements Comparable<LifetimeTasks> {
 	}
 
 	public static double getValidDoubleInput(Scanner scanner, String prompt) {
-		double input = 0;
+		double validInput = 0;
 		while (true) {
 			try {
 				System.out.println(prompt);
-				input = scanner.nextDouble();
-				if (input < 0) {
+				validInput = scanner.nextDouble();
+				if (validInput < 0) {
 					throw new IllegalArgumentException("Input must be greater than or equal to 0.");
 				}
 				break;
@@ -117,7 +115,7 @@ public abstract class LifetimeTasks implements Comparable<LifetimeTasks> {
 				System.out.println(excpt.getMessage());
 			}
 		}
-		return input;
+		return validInput;
 	}
 
 	public static int convertTime(int totalMinutes) {
