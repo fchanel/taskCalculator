@@ -6,14 +6,17 @@ import java.util.Scanner;
 public class TaskCalculatorDriver1 {
 
 	public static void main(String[] args) {
-		System.out.println("\t***Welcome to the task calculator!***\n\n"
-				+"\n\tIn this program we will explore\n\tHow much of your life you\n\tSpend on tasks you might perform daily\n\tBased on selected tasks from the menu"
-				+ "\n\tAnd from custom tasks from input." 
-				+ "\n\tAfter you have calculated two or more tasks"
-				+ "\n\tYou can see a grand total of combined time you will spend on these tasks"
-				+ "\n\tAnd then the program will terminate." 
-				+ "\n\n\n\t\"One must imagine Sisyphus happy.\""
-				+ "\n\t\t\t-Albert Camus\n\n\n"
+		final String BLUE_BACKGROUND = "\033[44m"; // BLUE
+		final String GREY_BACKGROUND = "\033[47m";
+		final String RESET = "\033[0m"; // Text Reset
+		final String PURPLE = "\033[0;35m"; // PURPLE
+
+		System.out.println(GREY_BACKGROUND + "\n\t***Welcome to the task calculator!***\t\t\n\n"
+				+ "\n\tIn this program we will explore\t\t\t\n\tHow much of your life you\t\t\t\n\tSpend on tasks you might perform daily\t\t\n\tBased on selected tasks from the menu\t\t"
+				+ "\n\tAnd from custom tasks from input.\t\t" + "\n\tAfter you have calculated two or more tasks\t"
+				+ "\n\tYou can see a grand total of combined time\t\n\tYou will spend on these tasks.\t\t\t\n"
+				+ "\n\tAnd then the program will terminate.\t   " + RESET + PURPLE
+				+ "\n\n\n\t\"One must imagine Sisyphus happy.\"" + "\n\t\t\t-Albert Camus\n\n\n" + RESET
 				+ "\n\n\tTo start please answer the following questions:\n\n");
 		Scanner scanner = new Scanner(System.in);
 
@@ -64,7 +67,7 @@ public class TaskCalculatorDriver1 {
 				System.out.println(drivingTask.toString());
 				break;
 			case 4:
-				scanner.nextLine(); 
+				scanner.nextLine();
 				System.out.print("\tEnter the name of the custom task: ");
 				String customTaskName = scanner.nextLine();
 				int customStartAge = LifetimeTasks.getValidIntInput(scanner,

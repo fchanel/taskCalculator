@@ -53,7 +53,7 @@ public abstract class LifetimeTasks implements Comparable<LifetimeTasks> {
 		totalSecondsOfTaskLifetime = TimeUnit.convert(totalMinutes, TimeUnit.SECONDS);
 	}
 
-	public int getTotalMinsOfTaskLifetime() {
+	public static int getTotalMinsOfTaskLifetime() {
 		return totalMinsOfTaskLifetime;
 	}
 
@@ -73,16 +73,16 @@ public abstract class LifetimeTasks implements Comparable<LifetimeTasks> {
 		return ageStartedTask == that.ageStartedTask && endAge == that.endAge;
 	}
 
-	// @Override
+	@Override
 	public int compareTo(LifetimeTasks other) {
-		return Integer.compare(this.totalMinsOfTaskLifetime, other.totalMinsOfTaskLifetime);
+		return Integer.compare(LifetimeTasks.totalMinsOfTaskLifetime, LifetimeTasks.totalMinsOfTaskLifetime);
 	}
 
-	public static int getValidIntInput(Scanner scanner, String prompt) {
+	public static int getValidIntInput(Scanner scanner, String isValidInt) {
 		int input = 0;
 		while (true) {
 			try {
-				System.out.println(prompt);
+				System.out.println(isValidInt);
 				input = scanner.nextInt();
 				if (input < 0) {
 					throw new IllegalArgumentException("Input must be greater than or equal to 0.");
@@ -98,11 +98,11 @@ public abstract class LifetimeTasks implements Comparable<LifetimeTasks> {
 		return input;
 	}
 
-	public static double getValidDoubleInput(Scanner scanner, String prompt) {
+	public static double getValidDoubleInput(Scanner scanner, String isValidDouble) {
 		double validInput = 0;
 		while (true) {
 			try {
-				System.out.println(prompt);
+				System.out.println(isValidDouble);
 				validInput = scanner.nextDouble();
 				if (validInput < 0) {
 					throw new IllegalArgumentException("Input must be greater than or equal to 0.");
@@ -126,8 +126,8 @@ public abstract class LifetimeTasks implements Comparable<LifetimeTasks> {
 		int remainingMinutes = totalMinutes % 60;
 		int remainingHours = totalHours % 24;
 
-		System.out.println("Which comes to roughly: " + totalDays + " days, " + remainingHours + " hours, " + "and " + remainingMinutes
-				+ " minutes of your life you will spend preforming these task/s\n\n");
+		System.out.println("\n\t Which comes to roughly:\n\t " + totalDays + " days\n\t " + remainingHours + " hours,\n\t " + "and " + remainingMinutes
+				+ " minutes of your life you will spend preforming these task/s\n\n\n\n");
 		return totalMinutes;
 	}
 }
